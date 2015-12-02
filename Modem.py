@@ -10,8 +10,21 @@ from FSK import FSK
     (Frequency Shift Key).  Then the program will take the FSK signal and de-modulate it back to a analogue version of
      the binary string.
 '''
-signal = [0, 1, 1, 0, 1, 1, 1, 0]
+signal = []
 original_signal = []
+
+
+def validate_input_string(string):
+    signal_wave = []
+    for element in range(len(string)):
+        if int(string[element]) != 1 and int(string[element]) != 0:
+            input = raw_input('YOUR INPUT IS INVALID!\nPlease enter in a string of 1 and 0:\n')
+            validate_input_string(input)
+            break
+        else:
+            signal_wave.append(int(string[element]))
+
+    return signal_wave
 
 
 def display_digital_signal(binary, name):
@@ -30,6 +43,9 @@ def display_carrier_signal():
 
 
 def main():
+    test_string = raw_input('Please enter in a binary string:\n')
+    signal = validate_input_string(test_string)
+
     fsk = FSK(signal)
     display_carrier_signal()
     display_digital_signal(signal, 'Original Signal')
