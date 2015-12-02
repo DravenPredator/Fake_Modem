@@ -1,6 +1,10 @@
 import matplotlib.pylab as plt
 import numpy as np
+'''
+    Author: Rowland DePree          FSK.py
 
+    A class to modulate and de-modulate a binary string using FSK
+'''
 
 class FSK:
     def __init__(self, message):
@@ -37,11 +41,11 @@ class FSK:
                     self.wave_math.append('sin(x)')
 
     def decode_wave(self):
-        digital_message = ''
+        digital_message = []
         for element in self.wave_math:
             if element == 'sin(x)':
-                digital_message += '0'
+                digital_message.append(0)
             if element == 'sin(2x)':
-                digital_message += '1'
+                digital_message.append(1)
 
         return digital_message
